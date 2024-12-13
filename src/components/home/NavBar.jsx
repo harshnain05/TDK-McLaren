@@ -27,7 +27,7 @@ const Navbar = () => {
     }, [open]);
 
     return (
-        <div className='bg-blue-800 max-w-[1440px] justify-between items-center mb-9'>
+        <div className='bg-blue-800 max-w-[1440px] mx-auto justify-between items-center mb-9'>
             <img className='max-sm:hidden mx-auto ' src={TopSection} alt="" />
 
             <div className='flex justify-between  items-center pt-4 container max-w-[1140px] mx-auto md:ps-20 xl:ps-0 ps-5 pe-5 md:pe-5 xl:pe-0 '>
