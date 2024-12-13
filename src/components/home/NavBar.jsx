@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { HERDER_LIST } from '../../utils/Helper';
+import React, { useEffect, useState } from 'react'
+import { HEADER_LIST } from '../../utils/Helper'
+import { SearchIcon } from '../../utils/Icon'
 import TopSection from '../../assets/image/png/top-header.png'
-import Scope from '../../assets/image/svg/nav-input-logo.svg'
+import SideLogo from '../../assets/image/svg/nav-bar-logo.svg'
 const Navbar = () => {
-    const [open, setOpen] = useState(false);
-
-    const handleOpen = () => setOpen(!open);
-
-    const closeNavbar = () => {
-        setOpen(false);
-    };
-
+    const [open, setOpen] = useState(false)
+    const handleOpen = () => {
+        setOpen(!open)
+    }
     useEffect(() => {
         const handleOverflow = () => {
             if (open && window.innerWidth < 1024) {
@@ -25,50 +22,67 @@ const Navbar = () => {
             window.removeEventListener("resize", handleOverflow);
         };
     }, [open]);
+    const handleClose = () => {
+        setOpen(false)
+    }
+
+    const [search, setSearch] = useState(false)
+    const handleSearch = () => {
+        setSearch(!search)
+        setOpen(false)
+    }
+    const offSearch = () => {
+        setSearch(false)
+    }
 
     return (
-        <div className='bg-blue-800  justify-between items-center mb-9'>
-            <img className='max-sm:hidden mx-auto ' src={TopSection} alt="" />
-
-            <div className='flex justify-between  items-center pt-4 container max-w-[1140px] mx-auto md:ps-20 xl:ps-0 ps-5 pe-5 md:pe-5 xl:pe-0 '>
-            </div>
-
-    
-            <button
-                onClick={handleOpen}
-                className={`hidden size-7 justify-center relative z-50 max-lg:flex flex-col overflow-hidden`} >
-                <span
-                    className={`w-7 transition-all duration-300 h-[3px] bg-white mb-1 rounded-md ${open ? 'translate-x-10' : ''}`}
-                ></span>
-                <span
-                    className={`w-7 transition-all duration-300 h-[3px] bg-white mb-1 rounded-md relative after:w-full after:h-full after:bg-white after:absolute after:top-0 after:left-0 after:rounded-md ${open ? 'rotate-45 after:rotate-90' : ''}`}
-                ></span>
-                <span
-                    className={`w-7 transition-all duration-300 h-[3px] bg-white rounded-md ${open ? '-translate-x-10' : ''}`}
-                ></span>
-            </button>
-
-            <div className={`flex gap-6 lg:px-3 xl:px-0 max-lg:flex-col max-w-[1140px] mx-auto items-center max-lg:fixed max-lg:top-0 max-lg:w-full max-lg:h-screen max-lg:justify-center z-10 max-lg:items-center max-lg:bg-black max-lg:transition-all max-lg:duration-300 ${open ? 'max-lg:top-0' : 'left-full'}`}>
-
-                {HERDER_LIST.map((data, i) => (
-                    <a onClick={closeNavbar} className='whitespace-nowrap hover:text-blue-400  transition-all duration-300 text-[#E6EDF0] leading-150 text-[18px] relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] max-lg:text-[22px] after:bg-ferrari-red after:transition-all after:duration-300 hover:after:w-full after:' href={data.link} key={i}>{data.name}</a>
-
-                )
-
-                )}
-                <div className="relative w-[257px] lg:block hidden  justify-end mb-4 mt-[27px] ml-auto">
-                    <input
-                        type="text"
-                        placeholder="Search by keyword"
-                        className="w-full  pr-20 text-gray-900 border-2 border-white bg-blue-800 focus:outline-none py-2 px-4 rounded-md"
-                    />
-                    <img className='absolute top-4  right-3' src={Scope} alt="" />
+        <div className='bg-blue-700 w-full'>
+          
+             
+                <img className=' w-full mx-auto max-lg:hidden' src={TopSection} alt="top layer" />
+          
+            <div className='max-w-[1440px] mx-auto relative'>
+                <div className="w-full bg-blue-800">
+                </div>
+                <div className={`flex justify-between items-baseline mx-auto max-w-[1183px] max-xl:px-7 max-lg:pt-3 max-lg:pb-2.5 max-lg:items-center max-md:px-4 mr-custom-8 max-lg:mr-0 ml-auto`}>
+                    <a href="/" className='text-white max-lg:flex hidden leading-110 text-custom-sm'>
+                        <img className='max-w-[80px] max-sm:max-h-[20px]' src={SideLogo} alt="logo" />
+                    </a>
+                    <div onClick={handleOpen} className=' text-white hidden max-lg:flex flex-col justify-center items-center'>
+                        <div className=' gap-1 relative z-50 overflow-hidden cursor-pointer flex size-4 flex-col'>
+                            <div className={`flex w-4 h-0.5 bg-white transition-all duration-300 ${open === true ? 'translate-x-10' : ''}`}></div>
+                            <div className={`flex w-4 h-0.5 bg-white relative after:absolute after:w-4 after:h-0.5 after:bg-white after:top-0 after:transition-all after:duration-300 after:left-0 transition-all duration-300   ${open === true ? 'rotate-45 after:rotate-90' : ''}`}></div>
+                            <div className={`flex w-4 h-0.5 bg-white transition-all duration-300 ${open === true ? '-translate-x-10' : ''}`}></div>
+                        </div>
+                        <p className='text-[10px] text-white relative z-50'>MENU</p>
+                    </div>
+                    <div className={`flex items-end gap-9 z-40 pt-11 pb-custom-3 max-lg:fixed max-lg:left-1 max-lg:top-1 max-lg:-translate-x-1 max-lg:-translate-y-1 max-lg:w-0 max-lg:overflow-hidden max-lg:h-0 max-lg:flex-col max-lg:bg-blue-500 max-lg:justify-center max-lg:items-center ${open === true ? 'max-lg:w-[100%] max-lg:h-[100%]' : ''}`}>
+                        {HEADER_LIST.map((item, index) => (
+                            <a onClick={handleClose} className={`text-white leading-110 text-custom-sm relative after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 max-lg:opacity-0 transition-all duration-300 hover:after:w-full ${open === true ? 'max-lg:opacity-100' : ''}`} href={item.path} key={index}>{item.name}</a>
+                        ))}
+                        <button onClick={handleSearch} className='search-icon hidden max-lg:block transition-all duration-300' type='submit'>
+                            <SearchIcon />
+                        </button>
+                    </div>
+                    <form className='max-w-[257px] w-full max-lg:hidden border-white max-h-[31px] items-center flex border mt-[27px] mb-4 pr-3.5 border-solid rounded-custom-1'>
+                        <input placeholder='Search by Keyword' required className='bg-transparent text-white py-2 px-3.5 placeholder:text-white outline-none w-[90%] ' type="text" />
+                        <button className='search-icon transition-all duration-300' type='submit'>
+                            <SearchIcon />
+                        </button>
+                    </form>
+                    <form className={`max-w-[257px] w-full fixed z-[51] -top-1/2 left-1/2 -translate-x-1/2 !opacity-100 -translate-y-1/2  border-white max-h-[31px] items-center flex border mt-11 mb-custom-3 pr-3.5 border-solid rounded-custom-1 transition-all duration-300 ${search === true ? 'top-0' : ''}`}>
+                        <input placeholder='Search by Keyword' required className='bg-transparent text-white py-2 px-3.5 placeholder:text-white outline-none w-[90%] ' type="text" />
+                        <button onClick={offSearch} className='search-icon transition-all duration-300' type='submit'>
+                            <SearchIcon />
+                        </button>
+                    </form>
+                    <div onClick={offSearch} className={`fixed top-0 left-0 w-full h-full bg-blue-600 z-10 opacity-80  ${search === true ? '' : 'hidden'}`}></div>
                 </div>
             </div>
-
         </div>
-    );
-};
+    )
+}
 
-export default Navbar;
+export default Navbar
+
 

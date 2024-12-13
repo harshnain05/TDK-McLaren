@@ -7,7 +7,7 @@ import { Comparison } from './Icon'
 import { NoService } from './Icon'
 import { Support } from './Icon'
 import { StartSvgIcon } from './Icon'
-export const HERDER_LIST = [
+export const HEADER_LIST = [
 
 
    {
