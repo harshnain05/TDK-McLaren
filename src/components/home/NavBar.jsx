@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { HERDER_LIST } from '../../utils/Helper';
 import TopSection from '../../assets/image/png/top-header.png'
 import Scope from '../../assets/image/svg/nav-input-logo.svg'
-import NavLogo from '../../assets/image/svg/nav-bar-logo.svg'
 const Navbar = () => {
     const [open, setOpen] = useState(false);
 
@@ -28,7 +27,7 @@ const Navbar = () => {
     }, [open]);
 
     return (
-        <div className='bg-blue-800 justify-between items-center mb-9'>
+        <div className='bg-blue-800 max-w-[1440px] justify-between items-center mb-9'>
             <img className='max-sm:hidden mx-auto ' src={TopSection} alt="" />
 
             <div className='flex justify-between  items-center pt-4 container max-w-[1140px] mx-auto md:ps-20 xl:ps-0 ps-5 pe-5 md:pe-5 xl:pe-0 '>
